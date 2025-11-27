@@ -1,0 +1,51 @@
+# Node modules
+node_modules/
+package-lock.json
+npm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+go.sum
+
+# C++
+*.o
+*.out
+*.exe
+out
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Test outputs
+test_output/
+*.log
+
+# Credentials (if any)
+.env
+secrets/

@@ -1,0 +1,79 @@
+name: GitHub Classroom Auto-Grading
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  grade:
+    name: Auto-Grade Assignment
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
+      
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+      
+      - name: Install C++ compiler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++
+      
+      - name: Install Python dependencies (if needed)
+        run: |
+          pip install ecdsa base58  # Required for secure test runner
+          if [ -f solution/python/requirements.txt ]; then
+            pip install -r solution/python/requirements.txt
+          fi
+      
+      - name: Install JavaScript dependencies (if needed)
+        run: |
+          if [ -f solution/javascript/package.json ]; then
+            cd solution/javascript && npm install
+          fi
+      
+      - name: Check for banned libraries
+        run: |
+          chmod +x check_banned_simple.sh
+          ./check_banned_simple.sh
+      
+      - name: Run secure tests
+        id: test
+        env:
+          ASSIGNMENT_SEED: ${{ secrets.ASSIGNMENT_SEED || 'default_secure_seed_2024' }}
+        run: |
+          python3 secure_test_runner.py
+      
+      - name: Comment on PR (if PR)
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const testResult = process.env.TEST_RESULT || 'Tests completed';
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 🤖 Auto-Grading Results\n\n${testResult}`
+            });

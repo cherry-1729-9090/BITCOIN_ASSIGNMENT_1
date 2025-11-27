@@ -1,0 +1,19 @@
+[package]
+name = "bitcoin-key-derivation"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Allowed cryptographic libraries
+secp256k1 = "0.28"
+sha2 = "0.10"
+ripemd = "0.1"
+bs58 = "0.5"
+hex = "0.4"
+
+# Alternative secp256k1 library (choose one)
+# k256 = { version = "0.13", features = ["ecdsa", "std"] }
+
+[[bin]]
+name = "main"
+path = "main.rs"

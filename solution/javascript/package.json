@@ -1,0 +1,13 @@
+{
+  "name": "bitcoin-key-derivation",
+  "version": "1.0.0",
+  "description": "Bitcoin key derivation assignment",
+  "main": "main.js",
+  "dependencies": {
+    "tiny-secp256k1": "^2.2.3",
+    "bs58": "^5.0.0"
+  },
+  "scripts": {
+    "start": "node main.js"
+  }
+}
