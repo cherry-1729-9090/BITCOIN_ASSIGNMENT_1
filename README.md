@@ -256,10 +256,8 @@ Convert the hexadecimal string to bytes (32 bytes).
 
 ## 📖 Resources
 
-- [Bitcoin Addresses - Technical Background](https://en.bitcoin.it/wiki/Technical_background_of_version_1_Bitcoin_addresses)
-- [Wallet Import Format](https://en.bitcoin.it/wiki/Wallet_import_format)
-- [secp256k1 Curve Parameters](https://en.bitcoin.it/wiki/Secp256k1)
-- [Base58Check encoding](https://en.bitcoin.it/wiki/Base58Check_encoding)
+- [Mastering Bitcoin - Chapter 4](https://dl.ebooksworld.ir/motoman/Oreilly.Mastering.Bitcoin.Unlocking.Digital.Cryptocurrencies.www.EBooksWorld.ir.pdf)
+
 
 ---
 
